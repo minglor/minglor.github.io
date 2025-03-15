@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protected Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enter Passcode</h1>
+        <input type="password" id="passcode" placeholder="Enter passcode">
+        <button onclick="checkPasscode()">Submit</button>
+        <p id="error" class="hidden" style="color: red;">Incorrect passcode. Try again.</p>
+    </div>
+
+    <div id="content" class="container hidden">
+        <h1>Welcome to the Protected Page!</h1>
+        <p>This content is only accessible with the correct passcode.</p>
+    </div>
+
+    <script>
+        function checkPasscode() {
+            const passcode = document.getElementById('passcode').value;
+            const errorMessage = document.getElementById('error');
+            const content = document.getElementById('content');
+
+            // Replace '1234' with your desired passcode
+            if (passcode === '1234') {
+                document.querySelector('.container').classList.add('hidden');
+                content.classList.remove('hidden');
+            } else {
+                errorMessage.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

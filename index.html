@@ -26,6 +26,7 @@
             margin-top: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            width: 200px;
         }
         button {
             padding: 10px 20px;
@@ -42,32 +43,48 @@
         .hidden {
             display: none;
         }
+        #error {
+            color: red;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <!-- Passcode Entry Section -->
+    <div class="container" id="passcodeSection">
         <h1>Enter Passcode</h1>
         <input type="password" id="passcode" placeholder="Enter passcode">
+        <br>
         <button onclick="checkPasscode()">Submit</button>
-        <p id="error" class="hidden" style="color: red;">Incorrect passcode. Try again.</p>
+        <p id="error" class="hidden">Incorrect passcode. Try again.</p>
     </div>
 
-    <div id="content" class="container hidden">
-        <h1>Welcome to the Protected Page!</h1>
+    <!-- Protected Content Section -->
+    <div class="container hidden" id="protectedContent">
+        <h1>You've solved my riddles!</h1>
         <p>This content is only accessible with the correct passcode.</p>
     </div>
 
     <script>
         function checkPasscode() {
-            const passcode = document.getElementById('passcode').value;
-            const errorMessage = document.getElementById('error');
-            const content = document.getElementById('content');
+            // Get the passcode entered by the user
+            const enteredPasscode = document.getElementById('passcode').value;
 
-            // Replace '1234' with your desired passcode
-            if (passcode === '1234') {
-                document.querySelector('.container').classList.add('hidden');
-                content.classList.remove('hidden');
+            // Define the correct passcode (replace '1234' with your desired passcode)
+            const correctPasscode = '1234';
+
+            // Get references to the error message and protected content sections
+            const errorMessage = document.getElementById('error');
+            const passcodeSection = document.getElementById('passcodeSection');
+            const protectedContent = document.getElementById('protectedContent');
+
+            // Check if the entered passcode matches the correct passcode
+            if (enteredPasscode === correctPasscode) {
+                // Hide the passcode section and show the protected content
+                passcodeSection.classList.add('hidden');
+                protectedContent.classList.remove('hidden');
             } else {
+                // Show the error message
                 errorMessage.classList.remove('hidden');
             }
         }
